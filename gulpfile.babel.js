@@ -119,7 +119,7 @@ gulp.task('clean', () => {
 // Use webpack (with babel-loader) to transpile ES6, bundle modules,
 // and copy/paste results to the correct location(s)
 gulp.task('scripts', ['scripts:lint'], () => {
-  return gulp.src(`${config.sourceAssets}/scripts/main.js`)
+  return gulp.src(`${config.sourceAssets}/scripts/index.js`)
     .pipe(webpack(webpackConfig))                                  // bundle js modules
     .pipe(plugins.concat('evolution-ui.js'))                             // rename compiled file
     .pipe(gulp.dest(`${config.devAssets}/scripts/`))               // save to dev
