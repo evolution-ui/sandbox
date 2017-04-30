@@ -1,10 +1,10 @@
 {
   "name": "sandbox",
-  "version": "0.0.0-semantically-released",
+  "version": "0.0.0-semantic-release",
   "description": "",
-  "main": "source/scripts/main.js",
+  "main": "source/scripts/index.js",
   "scripts": {
-    "commit": "git-cz "
+    "commit": "git-cz",
     "start": "gulp serve",
     "production": "gulp serve --production",
     "build": "gulp build",
@@ -13,8 +13,7 @@
     "deploy": "gulp deploy",
     "deploy:docs": "gulp deploy --docs",
     "lint": "gulp scripts:lint",
-    "test": "npm run lint && mocha test/index.js --compilers js:babel-core/register --require test/utils/jsdom.js",
-    "test:watch": "npm run lint && mocha test/index.js --compilers js:babel-core/register --require test/utils/jsdom.js -w",
+    "test": "npm run lint",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "",
@@ -26,10 +25,10 @@
     "babel-preset-env": "^1.4.0",
     "babel-preset-es2015": "^6.24.1",
     "browser-sync": "^2.18.8",
-    "chai": "^3.5.0",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.0.0",
     "del": "^2.2.2",
+    "ghooks": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-changed": "^3.0.0",
     "gulp-concat": "^2.6.1",
@@ -48,10 +47,9 @@
     "gulp-uglify": "^2.1.2",
     "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.11",
-    "jsdom": "^10.0.0",
-    "mocha": "^3.3.0",
     "run-sequence": "^1.2.2",
     "semantic-release": "^6.3.2",
+    "validate-commit-message": "^3.0.1",
     "webpack": "^2.4.1",
     "webpack-stream": "^3.2.0"
   },
@@ -59,7 +57,14 @@
     "type": "git",
     "url": "https://github.com/evolution-ui/sandbox.git"
   },
-  "czConfig": {
-    "path": "node_modules/cz-conventional-changelog"
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    },
+    "ghooks": {
+      "pre-commit": "npm run test",
+      "pre-push": "npm run test",
+      "commit-msg": "validate-commit-msg"
+    }
   }
 }
