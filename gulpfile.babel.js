@@ -12,7 +12,7 @@ import del from 'del';
 import path from 'path';
 import runSequence from 'run-sequence';
 import webpack from 'webpack-stream';
-import webpackConfig from './webpack.config.js';
+import webpackConfig from './webpack.config.babel.js';
 
 //
 // Configuration
@@ -38,7 +38,7 @@ const config = {
   }
 };
 
-var postcssPlugins = [
+const postcssPlugins = [
   autoprefixer(config.browsers)
 ];
 
@@ -121,11 +121,11 @@ gulp.task('clean', () => {
 gulp.task('scripts', ['scripts:lint'], () => {
   return gulp.src(`${config.sourceAssets}/scripts/index.js`)
     .pipe(webpack(webpackConfig))                                  // bundle js modules
-    .pipe(plugins.concat('evolution-ui.js'))                             // rename compiled file
+    .pipe(plugins.concat('evolution-ui.js'))                       // rename compiled file
     .pipe(gulp.dest(`${config.devAssets}/scripts/`))               // save to dev
     .pipe(gulp.dest(config.dist))                                  // save to dist
-    .pipe(plugins.uglify())                                              // minify js
-    .pipe(plugins.rename({ suffix: '.min' }))                            // add .min suffix
+    .pipe(plugins.uglify())                                        // minify js
+    .pipe(plugins.rename({ suffix: '.min' }))                      // add .min suffix
     .pipe(gulp.dest(`${config.devAssets}/scripts/`))               // save minified file to dev
     .pipe(gulp.dest(`${config.docsAssets}/scripts/evolution-ui/`)) // save minified file to docs
     .pipe(gulp.dest(config.dist));                                 // save minified file to dist
@@ -144,14 +144,14 @@ gulp.task('scripts:lint', () => {
 // Compile Sass and copy/paste results to the correct location(s)
 gulp.task('styles', () => {
   return gulp.src(`${config.sourceAssets}/styles/main.scss`)
-    .pipe(plugins.sass().on('error', plugins.sass.logError))                  // compile sass
-    .pipe(plugins.postcss(postcssPlugins))                              // run through postcss processors (autoprefixer)
-    .pipe(plugins.rename({ basename: 'evolution-ui' }))                 // rename compiled file
+    .pipe(plugins.sass().on('error', plugins.sass.logError))      // compile sass
+    .pipe(plugins.postcss(postcssPlugins))                        // run through postcss processors (autoprefixer)
+    .pipe(plugins.rename({ basename: 'evolution-ui' }))           // rename compiled file
     .pipe(gulp.dest(`${config.devAssets}/styles/`))               // save to dev
     .pipe(gulp.dest(config.dist))                                 // save to dist
     .pipe(browserSync.reload({ stream: true }))                   // inject changes into browser
-    .pipe(plugins.cssmin())                                             // minify compiled file
-    .pipe(plugins.rename({ suffix: '.min' }))                           // add .min suffix
+    .pipe(plugins.cssmin())                                       // minify compiled file
+    .pipe(plugins.rename({ suffix: '.min' }))                     // add .min suffix
     .pipe(gulp.dest(`${config.devAssets}/styles/`))               // save to dev
     .pipe(gulp.dest(`${config.docsAssets}/styles/evolution-ui/`)) // save minified file to docs
     .pipe(gulp.dest(config.dist))                                 // save minified file to dist
@@ -187,15 +187,15 @@ gulp.task('html:copy-to-docs', () => {
 gulp.task('html:copy-to-dev', () => {
   // Wrap each HTML partial with root elements and include compiled assets
   // Use minified versions if running "production mode"
-  var prefix = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Evolution UI</title><link rel="stylesheet" href="/assets/styles/evolution-ui' + (config.env.production ? '.min' : '') + '.css"></head><body>';
-  var suffix = '<script src="/assets/scripts/evolution-ui' + (config.env.production ? '.min' : '') + '.js"></script></body></html>';
+  const prefix = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Evolution UI</title><link rel="stylesheet" href="/assets/styles/evolution-ui' + (config.env.production ? '.min' : '') + '.css"></head><body>';
+  const suffix = '<script src="/assets/scripts/evolution-ui' + (config.env.production ? '.min' : '') + '.js"></script></body></html>';
 
   return gulp.src(`${config.sourceComponents}/**/*.html`)
     .pipe(plugins.changed(config.dev))                                    // only transform changed files (faster)
     .pipe(plugins.frontMatter({ property: 'frontMatter', remove: true })) // remove yml front matter
     .pipe(plugins.insert.prepend(prefix))                                 // add prefix to source html file
     .pipe(plugins.insert.append(suffix))                                  // add suffix to source html file
-    .pipe(gulp.dest(config.dev));                                   // save to dev
+    .pipe(gulp.dest(config.dev));                                         // save to dev
 });
 
 // Jekyll
@@ -206,10 +206,10 @@ gulp.task('jekyll', plugins.shell.task([
 
 gulp.task('jekyll:styles', () => {
   return gulp.src(`${config.docsSite}/assets/styles/main.css`)
-    .pipe(plugins.postcss(postcssPlugins))                              // run through postcss processors (autoprefixer)
-    .pipe(plugins.cssmin())                                             // minify compiled file
-    .pipe(plugins.rename({ suffix: '.min' }))                           // add .min suffix
-    .pipe(gulp.dest(`${config.docsSite}/assets/styles/`))         // save minified file to dist
+    .pipe(plugins.postcss(postcssPlugins))                // run through postcss processors (autoprefixer)
+    .pipe(plugins.cssmin())                               // minify compiled file
+    .pipe(plugins.rename({ suffix: '.min' }))             // add .min suffix
+    .pipe(gulp.dest(`${config.docsSite}/assets/styles/`)) // save minified file to dist
 });
 
 // Skip

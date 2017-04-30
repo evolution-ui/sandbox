@@ -2,22 +2,25 @@
   "name": "sandbox",
   "version": "0.0.0-semantic-release",
   "description": "",
-  "main": "source/scripts/index.js",
+  "main": "dist/evolution-ui.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md"
+  ],
   "scripts": {
     "commit": "git-cz",
     "start": "gulp serve",
     "production": "gulp serve --production",
     "build": "gulp build",
-    "build:production": "gulp build --production",
-    "docs": "gulp --docs",
-    "deploy": "gulp deploy",
-    "deploy:docs": "gulp deploy --docs",
     "lint": "gulp scripts:lint",
     "test": "npm run lint",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "release": "semantic-release pre && npm publish && semantic-release post",
+    "docs": "gulp --docs",
+    "docs:deploy": "gulp deploy --docs"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.24.1",
