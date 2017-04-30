@@ -1,8 +1,12 @@
 .my-component {
-  color: blue; }
+  padding: 1em;
+  color: black; }
+
+.my-component {
+  background-color: lightgray; }
 
 .my-other-component {
-  color: blue; }
+  color: black; }
 
 .evo_c-curtain, .evo_c-curtain--gif {
   background: rgba(0, 0, 0, 0.2);

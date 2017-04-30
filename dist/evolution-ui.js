@@ -45,12 +45,12 @@
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__("./index.js");
+	module.exports = __webpack_require__("./main.js");
 
 
 /***/ }),
 
-/***/ "./index.js":
+/***/ "./main.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -59,15 +59,15 @@
 
 	var _documentReady2 = _interopRequireDefault(_documentReady);
 
-	var _myComponent = __webpack_require__("../../components/my-component/index.js");
+	var _myComponent = __webpack_require__("../../components/standard/my-component/index.js");
 
 	var _myComponent2 = _interopRequireDefault(_myComponent);
 
-	var _myOtherComponent = __webpack_require__("../../components/my-other-component/index.js");
+	var _myOtherComponent = __webpack_require__("../../components/standard/my-other-component/index.js");
 
 	var _myOtherComponent2 = _interopRequireDefault(_myOtherComponent);
 
-	var _curtain = __webpack_require__("../../components/curtain/index.js");
+	var _curtain = __webpack_require__("../../components/evolution/curtain/index.js");
 
 	var _curtain2 = _interopRequireDefault(_curtain);
 
@@ -105,7 +105,7 @@
 
 /***/ }),
 
-/***/ "../../components/my-component/index.js":
+/***/ "../../components/standard/my-component/index.js":
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -121,7 +121,7 @@
 
 /***/ }),
 
-/***/ "../../components/my-other-component/index.js":
+/***/ "../../components/standard/my-other-component/index.js":
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -137,7 +137,7 @@
 
 /***/ }),
 
-/***/ "../../components/curtain/index.js":
+/***/ "../../components/evolution/curtain/index.js":
 /***/ (function(module, exports) {
 
 	'use strict';

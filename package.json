@@ -1,11 +1,21 @@
 {
   "name": "sandbox",
-  "version": "1.0.0",
+  "version": "0.0.0-semantically-released",
   "description": "",
-  "main": "index.js",
+  "main": "source/scripts/main.js",
   "scripts": {
-    "start": "gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "commit": "git-cz "
+    "start": "gulp serve",
+    "production": "gulp serve --production",
+    "build": "gulp build",
+    "build:production": "gulp build --production",
+    "docs": "gulp --docs",
+    "deploy": "gulp deploy",
+    "deploy:docs": "gulp deploy --docs",
+    "lint": "gulp scripts:lint",
+    "test": "npm run lint && mocha test/index.js --compilers js:babel-core/register --require test/utils/jsdom.js",
+    "test:watch": "npm run lint && mocha test/index.js --compilers js:babel-core/register --require test/utils/jsdom.js -w",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +26,9 @@
     "babel-preset-env": "^1.4.0",
     "babel-preset-es2015": "^6.24.1",
     "browser-sync": "^2.18.8",
+    "chai": "^3.5.0",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-changed": "^3.0.0",
@@ -27,13 +40,26 @@
     "gulp-gh-pages": "^0.5.4",
     "gulp-imagemin": "^3.2.0",
     "gulp-insert": "^0.5.0",
+    "gulp-load-plugins": "^1.5.0",
     "gulp-postcss": "^6.4.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
+    "gulp-shell": "^0.6.3",
     "gulp-uglify": "^2.1.2",
+    "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.11",
+    "jsdom": "^10.0.0",
+    "mocha": "^3.3.0",
     "run-sequence": "^1.2.2",
+    "semantic-release": "^6.3.2",
     "webpack": "^2.4.1",
     "webpack-stream": "^3.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evolution-ui/sandbox.git"
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
   }
 }

@@ -1,0 +1,12 @@
+@import '../../assets/styles/abstracts/variables';
+
+.my-component {
+  padding: 1em;
+  color: $color-primary;
+}
+
+$color-primary: lightgray;
+
+.my-component {
+  background-color: $color-primary;
+}
