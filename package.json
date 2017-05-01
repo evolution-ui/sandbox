@@ -15,7 +15,7 @@
     "build": "gulp build",
     "lint": "gulp scripts:lint",
     "test": "npm run lint",
-    "release": "semantic-release pre && npm publish && semantic-release post",
+    "release": "semantic-release pre && npm publish --access public && semantic-release post",
     "docs": "gulp --docs",
     "docs:deploy": "gulp deploy --docs"
   },
