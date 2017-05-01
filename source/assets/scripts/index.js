@@ -1,10 +1,12 @@
-import documentReady from './libs/document-ready'
-import myComponent from '../../components/standard/my-component'
-import myOtherComponent from '../../components/standard/my-other-component'
-import curtain from '../../components/evolution/curtain'
+import documentReady from './libs/document-ready';
+import audioPlayer from '../../components/standard/audio-player';
+import myOtherComponent from '../../components/standard/my-other-component';
+import myComponent from '../../components/evolution/my-component';
+import curtain from '../../components/evolution/curtain';
 
 documentReady(
+  audioPlayer,
   myComponent,
   myOtherComponent,
   curtain
-)
+);
