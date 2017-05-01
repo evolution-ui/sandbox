@@ -175,13 +175,13 @@ gulp.task('html', callback => {
 // Rename and copy/paste raw HTML files to the /docs directory
 gulp.task('html:copy-to-docs', () => {
   return gulp.src([`${config.sourceComponents}/**/*.html`])
-    .pipe(plugins.changed(config.docsComponents))  // only transform changed files (faster)
-    .pipe(plugins.rename(file => {              // prepend "directory name + hyphen" to filename
+    .pipe(plugins.changed(config.docsComponents)) // only transform changed files (faster)
+    .pipe(plugins.rename(file => {                // prepend "directory name + hyphen" to filename
       file.base = '/';
       file.basename = file.dirname + '-' + file.basename;
     }))
-    .pipe(plugins.flatten())                       // flatten directory structure of HTML files
-    .pipe(gulp.dest(config.docsComponents)); // save to docs
+    .pipe(plugins.flatten())                      // flatten directory structure of HTML files
+    .pipe(gulp.dest(config.docsComponents));      // save to docs
 });
 
 // HTML: Copy to Dev
@@ -222,7 +222,7 @@ gulp.task('images', () => {
 // Copy/paste audio files to the correct location(s)
 gulp.task('audio', () => {
   return gulp.src(`${config.sourceComponents}/**/*.{wav,mp3,aiff,flac,ogg,wma,webm}`)
-    .pipe(plugins.changed(config.devAssets))  // only transform changed files (faster)
+    .pipe(plugins.changed(config.devAssets))                    // only transform changed files (faster)
     .pipe(gulp.dest(`${config.docsAssets}/audio/evolution-ui`)) // save to docs
     .pipe(gulp.dest(`${config.devAssets}/audio/evolution-ui`)); // save to dev
 });
@@ -235,9 +235,9 @@ gulp.task('jekyll', plugins.shell.task([
 
 gulp.task('jekyll:styles', () => {
   return gulp.src(`${config.docsSite}/assets/styles/main.css`)
-    .pipe(plugins.postcss(postcssPlugins))                // run through postcss processors (autoprefixer)
-    .pipe(plugins.cssmin())                               // minify compiled file
-    .pipe(plugins.rename({ suffix: '.min' }))             // add .min suffix
+    .pipe(plugins.postcss(postcssPlugins))               // run through postcss processors (autoprefixer)
+    .pipe(plugins.cssmin())                              // minify compiled file
+    .pipe(plugins.rename({ suffix: '.min' }))            // add .min suffix
     .pipe(gulp.dest(`${config.docsSite}/assets/styles`)) // save minified file to dist
 });
 
