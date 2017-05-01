@@ -1,7 +1,7 @@
 {
   "name": "sandbox",
   "version": "0.0.0-semantic-release",
-  "description": "",
+  "description": "A playground for the new Evolution UI directory structure and workflow.",
   "main": "dist/evolution-ui.js",
   "files": [
     "dist",
