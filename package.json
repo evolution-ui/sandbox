@@ -1,5 +1,5 @@
 {
-  "name": "sandbox",
+  "name": "@evolution-ui/sandbox",
   "version": "0.0.0-semantic-release",
   "description": "A playground for the new Evolution UI directory structure and workflow.",
   "main": "dist/evolution-ui.js",
@@ -15,7 +15,7 @@
     "build": "gulp build",
     "lint": "gulp scripts:lint",
     "test": "npm run lint",
-    "release": "semantic-release pre && npm publish && semantic-release post",
+    "release": "semantic-release pre && npm publish --access=public && semantic-release post",
     "docs": "gulp --docs",
     "docs:deploy": "gulp deploy --docs"
   },
